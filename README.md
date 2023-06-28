@@ -167,6 +167,122 @@ ALTER TABLE ruang_kelas CHANGE jumlah kapasitas INT(5);
 ALTER TABLE ruang_kelas DROP lokasi;
 ```
 
+## **SQL CRUD Script**
+
+```sql
+INSERT INTO gedung (id_gedung,nama,kapasitas,lokasi)
+VALUES ('G01','Gedung A','608','Kampus !'),
+('G02','Gedung B','300','Kampus 2'),
+('G03','Gedung C','860','Kampus 3'),
+('G04','Gedung D','210','kampus 4'),
+('G05','Gedung E','100','Kampus 5');
+```
+
+```sql
+INSERT INTO ruang_kelas (id_ruang,nama,kapasitas,id_gedung)
+VALUES ('R001','Ruang 302','45','G01'),
+('R002','Ruang 112','30','G04'),
+('R003','Ruang 570','45','G01'),
+('R004','Ruang 208','35','G04'),
+('R005','Ruang 99','40','G05'),
+('R006','Ruang 666','50','G03');
+```
+
+```sql
+INSERT INTO jdwl_penggunaan_ruang (id_jadwal,id_ruang,tanggal,waktu_mulai,waktu_selesai)
+VALUES ('J001','R001','2023-04-11','10:00','13:00'),
+('J002','R004','2023-04-12','08:00','11:00'),
+('J003','R002','2023-04-12','08:00','11:00'),
+('J004','R001','2023-04-11','07:30','09:30'),
+('J005','R003','2023-04-1','18:30','10:30');
+```
+
+```sql
+INSERT INTO peminjam (id_peminjam,nama,no_hp,email,alamat)
+VALUES ( '112234','Dudung Surudung','0897654543''dudung@gmail.com','Bekasi'),
+ ('123432','Asep Si Kasep','0887656453423','asepasik@gmail.com','Cikarang'),
+ ('223432','Ucup Surucup','08566777889','ucupup@gmail.com','Karawang'),
+ ('442212','Riyad clarita','012234356789','riyad23@yahoo.com','Papua'),
+ ('445566','Syahrukan bin binti','089543223421,''sssss@gmail.com','Bekasi'),
+ ('666666','Dimas Aldebaran','0876543223','dimassssh@gmail.com','Depok');
+```
+
+```sql
+INSERT INTO transaksi_peminjaman (id_transaksi,id_jadwal,id_peminjam,status,tgl_peminjam)
+VALUES ( 'T001','J003','445566','APPROVED','2023-07-12 10:00:00'),
+ ('T002','J001','123432','PENDING','2023-07-19 08:00:00'),
+ ('T003','J002','112234','APPROVED','2023-06-01 19:13:00'),
+ ('T004','J004','445566','PENDING','2023-07-15 09:10:00'),
+ ('T005','J005','666666','APPROVED','2023-08-19 18:24:0');
+```
+
+```sql
+INSERT INTO laporan_transaksi (id_laporan,id_transaksi,tanggal,keterangan)
+VALUES ( 'L001','T001','2023-07-20 00:00:00','Peminjaman Ruang Kelas'),
+ ('L002'.'T003','2023-06-15 00:00:00','Peminjaman Ruang Kelas'),
+ ('L003'.'T005','2023-08-29 00:00:00','Peminjaman Ruang Dosen');
+```
+
+```sql
+SELECT * FROM gedung;
+```
+
+```sql
+SELECT * FROM ruang_kelas;
+```
+
+```sql
+SELECT * FROM jdwl_penggunaan_ruang;
+```
+
+```sql
+SELECT * FROM peminjam;
+```
+
+```sql
+SELECT * FROM transaksi_peminjaman;
+```
+
+```sql
+SELECT * FROM laporan_transaksi;
+```
+
+```sql
+UPDATE ruang_kelas SET lokasi = 'Gedung 1'
+WHERE id_ruang = 'R002';
+```
+
+```sql
+DELETE FROM transaksi_peminjaman WHERE id_transaksi = 'T005';
+```
+
+[BACK->DAFTAR_ISI](#daftar-isi)
+
+## **SQL JOIN Script**
+
+```sql
+SELECT peminjam.nama AS Peminjam, ruang_kelas.nama AS Ruang, gedung.nama AS Gedung, gedung.lokasi
+FROM transaksi_peminjaman
+JOIN peminjam ON transaksi_peminjaman.id_peminjam = peminjam.id_peminjam
+JOIN jdwl_penggunaan_ruang ON transaksi_peminjaman.id_jadwal = jdwl_penggunaan_ruang.id_jadwal
+JOIN ruang_kelas ON jdwl_penggunaan_ruang.id_ruang = ruang_kelas.id_ruang
+JOIN gedung ON ruang_kelas.id_gedung = gedung.id_gedung;
+```
+
+```sql
+SELECT ruang_kelas.nama AS 'Ruang Kelas', gedung.nama AS Gedung
+FROM ruang_kelas
+INNER JOIN gedung ON ruang_kelas.id_gedung = gedung.id_gedung;
+```
+
+```sql
+SELECT transaksi_peminjaman.id_transaksi, peminjam.nama AS 'Peminjam', transaksi_peminjaman.tgl_peminjaman
+FROM transaksi_peminjaman
+INNER JOIN peminjam ON transaksi_peminjaman.id_peminjam = peminjam.id_peminjam;
+```
+
+[BACK->DAFTAR_ISI](#daftar-isi)
+
 # **LAPORAN**
 
 ### **DATABASE SISTEM PEMINJAMAN RUANG KELAS**
