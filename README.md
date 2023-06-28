@@ -1,4 +1,35 @@
-# DATABASE_PEMINJAMAN_RUANG_KELAS
+## **Kelompok 7**
+
+```
+1. DIPCA ANUGRAH
+2. DISKA KURNIA AZZAHRA PUTRA
+3. MUHAMMAD RIYADUS SOLIHIN
+4. DIMAS ADI NUGRAHA
+```
+
+## DAFTAR ISI
+
+| Menu     | Link                     |
+| -------- | ------------------------ |
+| ER-D     | [link](#er-d)            |
+| DDL      | [link](#ddl-script)      |
+| SQL CRUD | [link](#sql-crud-script) |
+| SQL JOIN | [link](#sql-join-script) |
+| LAPORAN  | [link](#laporan)         |
+
+# DATABASE SISTEM PEMINJAMAN RUANG KELAS
+
+- Mengelola data Gedung dan Ruang Kelas
+- Mengelola Jadwal Penggunaan Ruang
+- Mengelola Data Peminjam
+- Transaksi Peminjaman
+- Laporan Transaksi
+
+## **ER-D**
+
+![ER-D](gambar/ER-D_Peminjaman_Ruang_Kelas.png)
+
+[BACK->DAFTAR_ISI](#daftar-isi)
 
 ## **DDL Script**
 
