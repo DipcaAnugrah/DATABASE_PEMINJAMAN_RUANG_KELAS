@@ -9,13 +9,14 @@
 
 ## DAFTAR ISI
 
-| Menu     | Link                     |
-| -------- | ------------------------ |
-| ER-D     | [link](#er-d)            |
-| DDL      | [link](#ddl-script)      |
-| SQL CRUD | [link](#sql-crud-script) |
-| SQL JOIN | [link](#sql-join-script) |
-| LAPORAN  | [link](#laporan)         |
+| Menu     | Link                                                |
+| -------- | --------------------------------------------------- |
+| ER-D     | [link](#er-d)                                       |
+| DDL      | [link](#ddl-script)                                 |
+| SQL CRUD | [link](#sql-crud-script)                            |
+| SQL JOIN | [link](#sql-join-script)                            |
+| LAPORAN  | [link](#laporan)                                    |
+| YouTube  | [link](https://www.youtube.com/watch?v=4BXCUde8YAA) |
 
 # DATABASE SISTEM PEMINJAMAN RUANG KELAS
 
@@ -99,17 +100,17 @@ CREATE TABLE jadwal_penggunaan_ruang (
 
 ```sql
 CREATE TABLE `transaksi_peminjaman` (
-    id_transaksi varchar(10) NOT NULL,
-    id_jadwal varchar(10) DEFAULT NULL,
-    id_peminjam varchar(10) DEFAULT NULL,
-    status varchar(15) NOT NULL,
-    tgl_peminjaman datetime DEFAULT NULL
+    id_transaksi VARCHAR(10) NOT NULL,
+    id_jadwal VARCHAR(10) DEFAULT NULL,
+    id_peminjam VARCHAR(10) DEFAULT NULL,
+    status VARCHAR(15) NOT NULL,
+    tgl_peminjaman DATETIME
 );
 ```
 
 ```sql
 CREATE TABLE peminjam (
-    id_peminjam VARCHAR(10) PRIMARY KEY NOT,
+    id_peminjam VARCHAR(10) PRIMARY KEY NOT NULL,
     nama VARCHAR(10) NOT NULL,
     no_hp VARCHAR(15) NOT NULL,
     email VARCHAR(100)
@@ -118,7 +119,7 @@ CREATE TABLE peminjam (
 
 ```sql
 CREATE TABLE laporan_transaksi (
-    id_laporan VARCHAR(10) PRIMARY KEY NOT,
+    id_laporan VARCHAR(10) PRIMARY KEY NOT NULL,
     id_transaksi VARCHAR(10),
     tanggal DATETIME NOT NULL,
     keterangan VARCHAR(45)
@@ -152,7 +153,7 @@ FOREIGN KEY (id_peminjam) REFERENCES peminjam(id_peminjam);
 ```sql
 ALTER TABLE laporan_transaksi
 ADD CONSTRAINT fk_transaksi_laporan
-FOREIGN KEY (id_transaksi) REFERENCES laporan_transaksi(id_transaksi);
+FOREIGN KEY (id_transaksi) REFERENCES transaksi_peminjaman(id_transaksi);
 ```
 
 ```sql
